@@ -1,0 +1,110 @@
+﻿<Window x:Class="M003.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:M003"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="800"
+		WindowStartupLocation="CenterScreen">
+	<ScrollViewer>
+		<StackPanel>
+			<!--Margin: Seitenabstand zum übergeordneten Container-->
+			<!--Drei Eingaben:-->
+			<!--Eine Zahl: Alle Seiten gleicher Abstand-->
+			<!--Zwei Zahlen: Links und Rechts, Oben und Unten-->
+			<!--View Zahlen: Links, Oben, Rechts, Unten (in dieser Reihenfolge)-->
+			<Button Content="Ein Button" Margin="5, 0, 5, 5"/>
+			<Button Content="Ein Button" Margin="5, 0, 5, 5"/>
+
+			<!--Alignment: Positionierung von Elementen anhand des Oberelements-->
+			<!--HorizontalAligment, VerticalAlignment-->
+			<!--HorizontalContectAligment, VerticalContectAlignment-->
+			<TextBlock Text="Ein Text" HorizontalAlignment="Center"/>
+			<Button Height="100"
+					Content="Zwei Button"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Left"
+					VerticalContentAlignment="Top"/>
+
+			<!--Bei einem StackPanel kann die Richtung bestimmt werden-->
+			<!--Layout Komponente können auch verschachtelt werden-->
+			<StackPanel Orientation="Horizontal">
+				<Button Content="B1--------" FontSize="40"/>
+				<Button Content="B1--------" FontSize="40"/>
+				<Button Content="B1--------" FontSize="40"/>
+				<Button Content="B1--------" FontSize="40"/>
+				<Button Content="B1--------" FontSize="40"/>
+				<Button Content="B1--------" FontSize="40"/>
+			</StackPanel>
+
+			<!--Durch ein WrapPanel kann ein StackPanel wrappen (Überschüssige Elemente in die nächste Zeile/Spalte schreiben)-->
+			<WrapPanel Orientation="Horizontal">
+				<Button Content="B1--------" FontSize="40"/>
+				<Button Content="B1--------" FontSize="40"/>
+				<Button Content="B1--------" FontSize="40"/>
+				<Button Content="B1--------" FontSize="40"/>
+				<Button Content="B1--------" FontSize="40"/>
+				<Button Content="B1--------" FontSize="40"/>
+			</WrapPanel>
+
+			<!--Bei einem DockPanel können Komponente an die Vier Seiten angehängt werden-->
+			<DockPanel Height="100" LastChildFill="False">
+				<Button DockPanel.Dock="Top" Content="Top"></Button>
+				<Button DockPanel.Dock="Bottom" Content="Bottom"></Button>
+				<Button DockPanel.Dock="Left" Content="Left"></Button>
+				<Button DockPanel.Dock="Right" Content="Right"></Button>
+				<TextBlock Background="Aqua" Text="123"/>
+			</DockPanel>
+
+			<!--Das Grid ermöglicht das Positionieren von Komponenten mithilfe von einem Row und einem Column Index-->
+			<!--Row-/Columndefinition sollten angegeben werden-->
+			<!--Über * kann eine Dynamische Höhe/Breite von Definitionen gesetzt werden-->
+			<!--Bei den Komponenten selbst kann die Zeile und Spalte angegeben werden-->
+			<!--Über Row-/Columnspan kann eine Überschneidung der Zeilen-/Spaltengrenzen erzielt werden-->
+			<Grid Height="200">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="2*"/>
+					<RowDefinition SharedSizeGroup="A"/>
+					<RowDefinition SharedSizeGroup="A"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="1*" MaxWidth="300"/>
+					<!--1*, 1*: Restliche Komponente teilen sich den Platz gleichmäßig auf-->
+					<ColumnDefinition Width="2*"/>
+					<!--1*, 2*: 3/3 Platz, 1. nimmt sich 1/3, 2. nimmt sich 2/3-->
+				</Grid.ColumnDefinitions>
+
+				<Button Grid.Row="2"
+						Grid.Column="1"
+						Grid.ColumnSpan="2"
+						Margin="5"
+						Content="Speichern"/>
+			</Grid>
+
+			<!--Skaliert UI-Elemente innerhalb des Containers mit der Fenstergröße-->
+			<!--U.a. nützlich bei TextBlock-->
+			<Viewbox>
+				<TextBlock>Ein Text</TextBlock>
+			</Viewbox>
+
+			<!--Border ist ein Layoutelement, benötigt aber ein weiteres Layoutelement direkt darunter-->
+			<Border BorderBrush="Aqua" BorderThickness="5">
+				<StackPanel Orientation="Horizontal">
+					<Button Content="B1"/>
+					<Button Content="B2"/>
+					<Button Content="B3"/>
+				</StackPanel>
+			</Border>
+
+			<!--Ermöglicht das Scrollen des Inhalts (vertikal und/oder horizontal)-->
+			<ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+				<StackPanel>
+
+				</StackPanel>
+			</ScrollViewer>
+		</StackPanel>
+	</ScrollViewer>
+</Window>

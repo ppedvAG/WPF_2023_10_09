@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:M002"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <StackPanel>
+        Title="MainWindow" Height="450" Width="800"
+		WindowStartupLocation="CenterScreen">
+	<StackPanel>
+		<StackPanel.Background>
+			<LinearGradientBrush>
+				<GradientStop Color="Yellow" Offset="1"/>
+				<GradientStop Color="Orange"/>
+			</LinearGradientBrush>
+		</StackPanel.Background>
 		<Button Click="ButtonTestClicked" IsEnabled="True"> <!--Name eingeben -> F12 um das Event mit dem Namen zu erzeugen-->
 			<Button.Content> <!--Content öffnen um mehrere/komplexe Elemente einzubauen-->
 				<StackPanel>
@@ -18,7 +25,7 @@
 
 		<TextBlock Text="Ein Text" Name="Info"/> <!--Über Name kann die Komponente im Code Behind angegriffen werden-->
 
-		<Image Source="C:\Users\lk3\source\repos\WPF_2023_09_10\M002\ppedv-Background.png" Width="200"/>
+		<Image Source="C:\Users\lk3\source\repos\WPF_2023_09_10\M002\ppedv-Background.png" Height="200"/>
 
 		<!--AcceptsReturn: Erlaubt Umbrüche innerhalb der TextBox-->
 		<!--KeyUp um auf Enter zu reagieren statt KeyDown-->
