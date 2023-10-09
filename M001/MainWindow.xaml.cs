@@ -20,7 +20,7 @@ namespace M001
 		public MainWindow()
 		{
 			InitializeComponent(); //Sollte das erste Statement sein
-			TB.Text = "Dieser Text kommt vom Konstruktor";
+			//TB.Text = "Dieser Text kommt vom Konstruktor";
 		}
 	}
 }

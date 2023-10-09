@@ -1,0 +1,98 @@
+﻿<Window x:Class="M002.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:M002"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+		<Button Click="ButtonTestClicked" IsEnabled="True"> <!--Name eingeben -> F12 um das Event mit dem Namen zu erzeugen-->
+			<Button.Content> <!--Content öffnen um mehrere/komplexe Elemente einzubauen-->
+				<StackPanel>
+					<TextBlock Text="Test"/>
+					<TextBlock Text="Test"/>
+				</StackPanel>
+			</Button.Content>
+		</Button>
+
+		<TextBlock Text="Ein Text" Name="Info"/> <!--Über Name kann die Komponente im Code Behind angegriffen werden-->
+
+		<Image Source="C:\Users\lk3\source\repos\WPF_2023_09_10\M002\ppedv-Background.png" Width="200"/>
+
+		<!--AcceptsReturn: Erlaubt Umbrüche innerhalb der TextBox-->
+		<!--KeyUp um auf Enter zu reagieren statt KeyDown-->
+		<!--ContextMenu="{x:Null}" um ContextMenü zu deaktivieren-->
+		<TextBox Name="Input"
+				 AcceptsReturn="True"
+				 KeyUp="InputEnterPressed">
+			<TextBox.ContextMenu>
+				<ContextMenu>
+					<MenuItem Header="Eintrag1"/>
+					<MenuItem Header="Eintrag2"/>
+					<MenuItem Header="Eintrag3"/>
+					<Separator/>
+					<MenuItem Header="Eintrag4"/>
+					<MenuItem Header="Eintrag5"/>
+					<MenuItem Header="Eintrag6"/>
+				</ContextMenu>
+			</TextBox.ContextMenu>
+		</TextBox>
+
+		<!--ComboBox: Dropdown-->
+		<!--ComboBoxItem per Hand im XAML einbauen-->
+		<!--Dynamische Items (Listen) müssen über ein Binding oder Backend Code eingebunden werden-->
+		<!--Über ItemsSource können die Items eingefügt werden-->
+		<ComboBox Name="Dropdown">
+			<ComboBoxItem Content="Item1"/>
+			<ComboBoxItem Content="Item2"/>
+			<ComboBoxItem Content="Item3"/>
+		</ComboBox>
+
+		<!--Text bei einer CheckBox kann nur auf der rechten Seite sein-->
+		<!--Anpassbar mittels FlowDirection, Haken wird dadurch auch gedreht-->
+		<!--Lösung: Eigene CheckBox entwickeln-->
+		<CheckBox IsChecked="True" 
+				  Content="CheckBox1"
+				  Checked="CheckBox_Checked" 
+				  Unchecked="CheckBox_Unchecked"/>
+
+		<!--Über die Gruppe wird die Zugehörigkeit bestimmt-->
+		<RadioButton GroupName="RGruppe1"/>
+		<RadioButton GroupName="RGruppe1"/>
+		<RadioButton GroupName="RGruppe1"/>
+
+		<!--Slider hat einen double darunter -> Kommazahlen als Werte-->
+		<!--Über IsSnapToTickEnabled und TickFrequency einen Ganzzahligen Slider erzeugen-->
+		<!--TickFrequency ist der Abstand in dem Ticks platziert werden-->
+		<!--Max=100, Freq=1 -> 100 Ticks in 1er Abständen-->
+		<!--Max=100, Freq=2 -> 50 Ticks in 2er Abständen-->
+		<!--Max=100, Freq=0.5 -> 200 Ticks in 0.5er Abständen-->
+		<Slider Minimum="0" 
+				Maximum="100"
+				Name="Slider1"
+				TickFrequency="1"
+				IsSnapToTickEnabled="True"
+				ValueChanged="Slider1_ValueChanged"/>
+
+		<!--Über Code behind mit einem Wert versehen-->
+		<ProgressBar Minimum="0"
+					 Maximum="100"
+					 Value="50"
+					 Height="30"
+					 IsIndeterminate="True"/>
+
+		<Separator/>
+		
+		<Menu>
+			<MenuItem Header="Wurzel">
+				<MenuItem Header="Item1">
+					<MenuItem Header="Verschachtelt1"/>
+				</MenuItem>
+				<MenuItem Header="Beenden" Click="BeendenClicked">
+
+				</MenuItem>
+			</MenuItem>
+		</Menu>
+	</StackPanel>
+</Window>
