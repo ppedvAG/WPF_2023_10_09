@@ -1,0 +1,44 @@
+﻿<Window x:Class="M006.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:M006"
+        mc:Ignorable="d"
+		
+		DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="MainWindow" Height="450" Width="800"
+		WindowStartupLocation="CenterScreen">
+    <StackPanel>
+		<!--DataBinding-->
+		<!--Jetzt werden Daten aus dem Backend an die UI gebunden-->
+		<!--Benötigt INotifyPropertyChanged (sonst gibt das Backend die Werte nicht weiter)-->
+		<!--Zahl muss von der UI gefunden werden -> DataContext-->
+		
+		<!--DataContext: Gibt vor, wo sich die Properties befindens-->
+		<!--DataContext kann im Konstruktor gesetzt werden oder im XAML selbst-->
+		<!--1. this.DataContext = this;-->
+		<!--2. DataContext="{Binding RelativeSource={RelativeSource Self}}"-->
+		<TextBlock Text="{Binding Zahl}"/>
+		<Button Click="Button_Click" Content="Zahl++"/>
+		<!--Zahl aktualisiert sich nicht automatisch -> INotifyPropertyChanged-->
+
+		<TextBlock Text="{Binding TestPerson.ID}"/>
+		<TextBlock Text="{Binding TestPerson.Name}"/>
+		<TextBlock Text="{Binding TestPerson.Description}"/>
+
+		<ListBox ItemsSource="{Binding Zahlen}"/>
+
+		<TextBlock>
+			<TextBlock.Text>
+				<Binding ElementName="Zahlen">
+					<Binding.Converter>
+						<local:CollectionToStringConverter/>
+					</Binding.Converter>
+				</Binding>
+			</TextBlock.Text>
+		</TextBlock>
+
+		<TextBlock Text="{Binding Nummer.Value}"/>
+	</StackPanel>
+</Window>
