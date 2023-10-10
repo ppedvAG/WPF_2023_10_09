@@ -1,0 +1,127 @@
+﻿<Window x:Class="M005.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:M005"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+		WindowStartupLocation="CenterScreen">
+    <StackPanel>
+		<!--Bindings-->
+		<!--Ermöglicht das Verbinden von zwei Properties aneinander-->
+		<!--Wenn sich das eine Property ändert, wird das andere auch mit geändert-->
+		<!--Zwei Haupteigenschaften-->
+		<!--1. Bindings müssen am Ziel definiert werden-->
+		<!--2. Benötigt ein besonderes Property: DependencyProperty oder INotifyPropertyChanged-->
+		
+		<!--DependencyProperty-->
+		<!--Wrapper der ein Property umgibt-->
+		<!--Verschiedene UI-Komponente haben DependencyProperties-->
+
+		<Slider TickFrequency="1" 
+				IsSnapToTickEnabled="True" 
+				Minimum="0" 
+				Maximum="100"
+				Name="TestSlider"/> <!--Value vom Slider an einen TextBlock binden (an das Text Property)-->
+		<TextBlock>
+			<TextBlock.Text>
+				<Binding ElementName="TestSlider"
+						 Path="Value"/>
+			</TextBlock.Text>
+		</TextBlock>
+		<TextBox>
+			<TextBox.Text>
+				<Binding ElementName="TestSlider"
+						 Path="Value"
+						 UpdateSourceTrigger="PropertyChanged"/>
+				<!--Der Modus gibt die Richtungen des Bindings an-->
+				<!--TwoWay: Beidseitiges Binding (beide Komponente ändern sich gegenseitig)-->
+				<!--OneWay, OneWayToSource: Einseitiges Binding (eine Komponente ändert die andere aber nicht umgekehrt)-->
+				
+				<!--UpdateSourceTrigger-->
+				<!--Beeinflusst, wann das Binding aktualisiert-->
+				<!--LostFocus: Standard-->
+				<!--PropertyChanged: Immer-->
+				<!--Explicit: Muss im Backend geändert werden-->
+			</TextBox.Text>
+		</TextBox>
+		<TextBlock>
+			<TextBlock.Text>
+				<Binding ElementName="TestSlider"
+						 Path="Value"
+						 StringFormat="Der Wert des Sliders ist: {0}"/>
+				<!--{0} steht hier für den Value-->
+			</TextBlock.Text>
+		</TextBlock>
+		
+		<!--Kurzschreibweise von Bindings-->
+		<!--Mit { } bei einem Property im UI-Komponenten Tag direkt-->
+		<TextBlock Text="{Binding ElementName=TestSlider, Path=Value, StringFormat='Der Wert des Sliders ist: {0}'}"/>
+
+		<!--Explicit Binding-->
+		<!--z.B. über einen Button das Update ermöglichen-->
+		<TextBox
+			Name="SliderInfo"
+			Text="{Binding
+			ElementName=TestSlider,
+			Path=Value,
+			Mode=OneWay,
+			FallbackValue=0,
+			UpdateSourceTrigger=Explicit}"/>
+		<Button Content="Update"
+				Click="Button_Click"/>
+
+		<!--Converter-->
+		<!--Manchmal passen zwei Typen bei einem Binding nicht zusammen -> Converter-->
+		<Button Content="Converter Test">
+			<Button.Visibility>
+				<Binding ElementName="Check" Path="IsChecked">
+					<Binding.Converter>  <!--Hier innerhalb des Binding Tags einen Converter angeben-->
+						<BooleanToVisibilityConverter/>
+					</Binding.Converter>
+				</Binding>
+			</Button.Visibility>
+		</Button>
+		<CheckBox Name="Check"/>
+		
+		<!--Eigener Converter-->
+		<!--Slider.Value (double) -> Button.Margin (Thickness)-->
+		<!--Diese beiden Werte sind nicht kompatibel-->
+		<Slider Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" Name="SizeSlider"/>
+		<Button Content="ResizeButton">
+			<Button.Margin>
+				<Binding ElementName="SizeSlider" Path="Value">
+					<Binding.Converter>
+						<local:DoubleToThicknessConverter/>
+						<!--Wenn vom Slider ein Wert kommt, wird der Rückgabewert an Button.Margin weitergegeben-->
+					</Binding.Converter>
+				</Binding>
+			</Button.Margin>
+		</Button>
+
+		<!--Eigener MultiValue-Converter-->
+		<!--MultiBinding-->
+		<!--Ermöglicht das Binden von mehreren Werten statt nur einem Wert-->
+		<!--Benötigt einen MultiValueConverter um die Sammlung Werten zu einem Output zu übersetzen-->
+		<Slider Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" Name="LSlider"/>
+		<Slider Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" Name="TSlider"/>
+		<Slider Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" Name="RSlider"/>
+		<Slider Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" Name="BSlider"/>
+		<Button Content="ResizeButton2">
+			<Button.Margin>
+				<MultiBinding>
+					<MultiBinding.Converter>
+						<local:FourValueToThicknessConverter/>
+					</MultiBinding.Converter>
+
+					<Binding ElementName="LSlider" Path="Value"/>
+					<Binding ElementName="TSlider" Path="Value"/>
+					<Binding ElementName="RSlider" Path="Value"/>
+					<Binding ElementName="BSlider" Path="Value"/>
+				</MultiBinding>
+			</Button.Margin>
+		</Button>
+		<Separator/>
+	</StackPanel>
+</Window>
