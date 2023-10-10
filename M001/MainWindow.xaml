@@ -13,75 +13,7 @@
 		ResizeMode="NoResize"
 		WindowStartupLocation="CenterScreen"
 		SizeToContent="Height">
-	<Window.Background>
-		<LinearGradientBrush>
-			<GradientStop Color="Green" Offset="1"/>
-			<GradientStop Color="LightGreen"/>
-		</LinearGradientBrush>
-	</Window.Background>
-    <StackPanel Margin="10">
-		<Grid>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="2*"/>
-			</Grid.ColumnDefinitions>
-			<TextBlock VerticalAlignment="Center">Vorname:</TextBlock>
-			<TextBox Grid.Column="1"/>
-		</Grid>
-		<Grid Margin="0,5,0,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="2*"/>
-			</Grid.ColumnDefinitions>
-			<TextBlock VerticalAlignment="Center">Nachname:</TextBlock>
-			<TextBox Grid.Column="1"/>
-		</Grid>
-		<Grid Margin="0,5,0,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="2*"/>
-			</Grid.ColumnDefinitions>
-			<TextBlock VerticalAlignment="Center">GebDat:</TextBlock>
-			<DatePicker Grid.Column="1"/>
-		</Grid>
-		<Grid Margin="0,5,0,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="2*"/>
-			</Grid.ColumnDefinitions>
-			<TextBlock VerticalAlignment="Center">Verheiratet:</TextBlock>
-			<CheckBox Grid.Column="1" VerticalAlignment="Center"/>
-		</Grid>
-		<Grid Margin="0,5,0,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="2*"/>
-			</Grid.ColumnDefinitions>
-			<TextBlock VerticalAlignment="Center">Lieblingsfarbe:</TextBlock>
-			<ComboBox Grid.Column="1" VerticalAlignment="Center"/>
-		</Grid>
-		<Grid Margin="0,5,0,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="2*"/>
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-			</Grid.RowDefinitions>
-			<TextBlock VerticalAlignment="Center">Geschlecht:</TextBlock>
-			<RadioButton Grid.Column="1" VerticalContentAlignment="Center" Content="M"/>
-			<RadioButton Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" Content="W"/>
-			<RadioButton Grid.Column="1" Grid.Row="2" VerticalContentAlignment="Center" Content="D"/>
-		</Grid>
-		<Grid Margin="0,5,0,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-			</Grid.ColumnDefinitions>
-			<Button Content="Abbrechen" Margin="0,0,5,0"/>
-			<Button Content="OK" Grid.Column="1" Margin="5,0,0,0"/>
-		</Grid>	
-	</StackPanel>
+	<Grid>
+		
+	</Grid>
 </Window>
