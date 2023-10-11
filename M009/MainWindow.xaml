@@ -16,24 +16,27 @@
 					<AdornedElementPlaceholder Name="OriginalElement"/>
 				</Border>
 				<Border BorderBrush="Red" BorderThickness="1" HorizontalAlignment="Left" Background="White">
-					<StackPanel>
-						<TextBlock Text="{Binding ElementName=OriginalElement, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
-						<TextBlock Text="{Binding ElementName=OriginalElement, Path=AdornedElement.(Validation.Errors)[1].ErrorContent}"/>
-					</StackPanel>
+					<TextBlock Text="{Binding ElementName=OriginalElement, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
 				</Border>
 			</StackPanel>
 		</ControlTemplate>
+		<local:ValidationRuleCollection x:Key="Rules">
+			<local:LetterValidation/>
+			<local:LengthValidation/>
+		</local:ValidationRuleCollection>
 	</Window.Resources>
     <StackPanel Margin="5">
-		<TextBox Name="TB" Validation.ErrorTemplate="{StaticResource ErrorTemp}">
-			<TextBox.Text>
+		<TextBox Name="TB"
+				 Validation.ErrorTemplate="{StaticResource ErrorTemp}"
+				 Text="{local:Validator {Binding Text}, {StaticResource Rules}}">
+			<!--<TextBox.Text>
 				<Binding Path="Text">
 					<Binding.ValidationRules>
 						<local:LetterValidation/>
 						<local:LengthValidation/>
 					</Binding.ValidationRules>
 				</Binding>
-			</TextBox.Text>
+			</TextBox.Text>-->
 		</TextBox>
 		<Button Content="Button"/>
 		<TextBlock Text="{Binding ElementName=TB, Path=(Validation.Errors)[0].ErrorContent}"/>

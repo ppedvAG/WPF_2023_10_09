@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows.Controls;
 
 namespace M009
@@ -21,6 +16,11 @@ namespace M009
 			{
 				return new ValidationResult(false, "Die Länge des Texts muss zwischen 3 und 20 Zeichen sein.");
 			}
+		}
+
+		public override string ToString()
+		{
+			return "Die Länge des Texts muss zwischen 3 und 20 Zeichen sein.";
 		}
 	}
 }

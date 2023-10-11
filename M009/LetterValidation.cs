@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Markup;
 
 namespace M009
 {
@@ -23,25 +20,10 @@ namespace M009
 			else
 				return new ValidationResult(false, "Der eingegebene Text darf nur aus Zeichen bestehen");
 		}
-	}
 
-	public class LetterMarkupValidation : MarkupExtension
-	{
-		public Binding Binding { get; set; }
-
-		public LetterMarkupValidation(Binding b, ValidationRuleCollection coll)
+		public override string ToString()
 		{
-			Binding = b;
-
-			foreach (ValidationRule rule in coll)
-				b.ValidationRules.Add(rule);
-		}
-
-		public override object ProvideValue(IServiceProvider serviceProvider)
-		{
-			return Binding.ProvideValue(serviceProvider);
+			return "Der eingegebene Text darf nur aus Zeichen bestehen";
 		}
 	}
-
-	public class ValidationRuleCollection : List<ValidationRule> { }
 }
