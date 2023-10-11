@@ -35,9 +35,10 @@
 
 		<!--DataTrigger-->
 		<!--Ermöglicht die Bindung an ein Backend Property-->
-		<ComboBox Name="CB" IsEnabled="False">
+		<ComboBox Name="CB">
 			<ComboBox.Style>
 				<Style TargetType="ComboBox">
+					<Setter Property="IsEnabled" Value="False"/>
 					<Style.Triggers>
 						<DataTrigger Binding="{Binding ElementName=CB, Path=HasItems}" Value="True">
 							<Setter Property="IsEnabled" Value="True"/>
@@ -56,7 +57,9 @@
 								<Condition Binding="{Binding ElementName=CB, Path=IsEnabled}" Value="True"/>
 								<Condition Binding="{Binding ElementName=CB, Path=IsDropDownOpen}" Value="True"/>
 							</MultiDataTrigger.Conditions>
-							<Setter Property="Background" Value="Red"/>
+							<MultiDataTrigger.Setters>
+								<Setter Property="Background" Value="Red"/>
+							</MultiDataTrigger.Setters>
 						</MultiDataTrigger>
 					</Style.Triggers>
 				</Style>
@@ -67,7 +70,7 @@
 		<!--Wird ausgeführt, wenn ein Event gefeuert wird-->
 		<!--Wird für Animationen verwendet-->
 		<Button Content="Neuer Text" Click="Button_Click">
-			<Button.Triggers>
+			<!--<Button.Triggers>
 				<EventTrigger RoutedEvent="MouseEnter">
 					<EventTrigger.Actions>
 						<BeginStoryboard>
@@ -79,7 +82,7 @@
 						</BeginStoryboard>
 					</EventTrigger.Actions>
 				</EventTrigger>
-			</Button.Triggers>
+			</Button.Triggers>-->
 		</Button>
 	</StackPanel>
 </Window>
