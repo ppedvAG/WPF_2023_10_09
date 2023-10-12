@@ -10,6 +10,10 @@
     <StackPanel>
 		<local:ColorPicker x:Name="Picker"/>
 		<TextBlock Text="{Binding ElementName=Picker, Path=PickedColor, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
-		<local:SpacingStackPanel/>
+		<local:SpacingStackPanel Spacing="5">
+			<Button Content="X"/>
+			<Button Content="Y"/>
+			<Button Content="Z"/>
+		</local:SpacingStackPanel>
 	</StackPanel>
 </Window>

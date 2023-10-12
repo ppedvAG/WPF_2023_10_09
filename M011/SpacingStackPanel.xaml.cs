@@ -1,25 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace M011
 {
-	/// <summary>
-	/// Interaction logic for SpacingStackPanel.xaml
-	/// </summary>
+	[ContentProperty("Items")]
 	public partial class SpacingStackPanel : UserControl
 	{
+		public static readonly DependencyProperty ItemsSourceProperty =
+			ItemsControl.ItemsSourceProperty.AddOwner(typeof(SpacingStackPanel));
+		
+		public IEnumerable ItemsSource
+		{
+			get => (IEnumerable) GetValue(ItemsSourceProperty);
+			set => SetValue(ItemsSourceProperty, value);
+		}
+
+		//public ItemCollection Items => UIItems.Items;
+
+		public int Spacing
+		{
+			get => (int) GetValue(SpaceProperty);
+			set => SetValue(SpaceProperty, value);
+		}
+
+		public static readonly DependencyProperty SpaceProperty =
+			DependencyProperty.Register("Space", typeof(int), typeof(SpacingStackPanel), new PropertyMetadata(0));
+
 		public SpacingStackPanel()
 		{
 			InitializeComponent();
